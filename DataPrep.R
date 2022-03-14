@@ -16,7 +16,7 @@ cars= cars %>%
 
 # Insert Image URL
 ImageUrl=c()
-for (model in cars['Model']){
+for (Modello in cars['Modello']){
   tempurl=gsub(" ", "", sprintf("https://raw.githubusercontent.com/RiccardoImprota/mtcars-images/main/%s.jpg", Modello), fixed = TRUE)
   ImageUrl <- c(ImageUrl, tempurl)
 }
