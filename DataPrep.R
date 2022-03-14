@@ -5,24 +5,24 @@ setwd('C:\\Users\\ricca\\Desktop\\DemoFerrari')
 cars<-mtcars
 cars<-cbind(Model = rownames(cars), cars)
 rownames(cars) <- 1:nrow(cars)
-colnames(cars) <- c('Model','Miles per Gallon','Number of cylinders','Displacement','Gross horsepower','Rear axle ratio','Weight (1000 lbs)','1/4 mile time','EngineType','Transmission','Number of forward gears','Number of carburetors')
+colnames(cars) <- c('Modello','Miglia per gallone','Numero di cilindri','Cilindrata','Cavalli vapore americani','Rapporto al ponte','Peso (1000 lbs)','Accelerazione (1/4 mile time)','Tipo di motore','Cambio','Numero di marce in avanti','Numero di carburatori')
 
 # Codify Transmission and EngineType as strings
 cars= cars %>%
-  mutate(Transmission=replace(Transmission, Transmission==0, 'automatic')) %>%
-  mutate(Transmission=replace(Transmission, Transmission==1, 'manual')) %>%
-  mutate(EngineType=replace(EngineType, EngineType==0, 'V-engine')) %>%
-  mutate(EngineType=replace(EngineType, EngineType==1, 'straight engine'))
+  mutate(Cambio=replace(Cambio, Cambio==0, 'automatic')) %>%
+  mutate(Cambio=replace(Cambio, Cambio==1, 'manual')) %>%
+  mutate(`Tipo di motore`=replace(`Tipo di motore`, `Tipo di motore`==0, 'V-engine')) %>%
+  mutate(`Tipo di motore`=replace(`Tipo di motore`, `Tipo di motore`==1, 'straight engine'))
 
 # Insert Image URL
 ImageUrl=c()
 for (model in cars['Model']){
-  tempurl=gsub(" ", "", sprintf("https://raw.githubusercontent.com/RiccardoImprota/mtcars-images/main/%s.jpg", model), fixed = TRUE)
+  tempurl=gsub(" ", "", sprintf("https://raw.githubusercontent.com/RiccardoImprota/mtcars-images/main/%s.jpg", Modello), fixed = TRUE)
   ImageUrl <- c(ImageUrl, tempurl)
 }
 cars<-cbind(cars,ImageUrl)
 
 
 #Export as CSV
-write.csv(cars,"mtcars.csv", row.names = FALSE)
+write.csv2(cars,"mtcars.csv", row.names = FALSE)
 
